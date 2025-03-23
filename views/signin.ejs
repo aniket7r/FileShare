@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signin</title>
+  <link rel="icon" href="/images/11580489.png" type="image/x-icon">
+  <style>
+    /* Existing CSS styles for larger screens */
+    /* Ensure to include your existing styles here */
+
+    /* Media query for smaller screens */
+    @media (max-width: 600px) {
+      .login-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .form-container {
+        width: 80%;
+        max-width: 400px;
+      }
+
+      input[type="email"],
+      input[type="password"],
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: var(--color); /* Ensure text color remains as defined */
+      }
+
+      
+    }
+    .register-forget {
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        margin-top: 20px;
+      }
+
+      .register-forget a {
+        text-align: center;
+        text-decoration: none;
+      }
+  </style>
+</head>
+
+<body class="loading">
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
+  <section class="container">
+    <div class="login-container">
+      <div class="circle circle-one"></div>
+      <div class="form-container">
+        <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+        <h1 class="opacity1">LOGIN</h1>
+        <form action="/user/signin" method="post">
+          <div class="mb-3">
+            <input type="email" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" />
+          </div>
+          <div class="mb-3">
+            <input type="password" name="password" id="exampleInputPassword1" placeholder="Password" />
+          </div>
+          <% if(locals.error){ %>
+          <div class="error-message">
+            Incorrect email or password
+          </div>
+          <% } %>
+          <button type="submit">Sign in</button>
+        </form>
+        <div class="register-forget opacity">
+          <a href="/user/signup">REGISTER</a>
+        </div>
+      </div>
+      <div class="circle circle-two"></div>
+    </div>
+  </section>
+  <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const body = document.body;
+
+      // Remove 'loading' class after window load
+      window.addEventListener('load', () => {
+        body.classList.remove('loading');
+      });
+
+      // Remove error messages on page reload
+      if (performance.navigation.type === 1) {
+        const errorMessages = document.querySelectorAll('.error-message');
+        errorMessages.forEach(msg => {
+          msg.remove();
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>
