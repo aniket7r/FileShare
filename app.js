@@ -67,6 +67,9 @@ app.get('/', checkForAuthenticationCookie('token'), async (req, res) => {
             blogs: userBlogs,
             blogCount: blogCount,
             blogsWithSize: blogsWithSize,
+            location: process.env.LOCATION,
+            projectId: process.env.PROJECT_ID,
+            agentId: process.env.AGENT_ID
         });
     } catch (error) {
         console.error('Error fetching blogs:', error);
